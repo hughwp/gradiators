@@ -1,0 +1,170 @@
+[
+  {
+    "id": "txn_001",
+    "date": "2026-09-30T09:00:00Z",
+    "merchantName": "Gradiators Payroll",
+    "amount": 2450.00,
+    "direction": "in",
+    "reference": "September salary"
+  },
+  {
+    "id": "txn_002",
+    "date": "2026-09-30T19:10:00Z",
+    "merchantName": "Tesco",
+    "amount": 38.42,
+    "direction": "out",
+    "reference": "Card payment"
+  },
+  {
+    "id": "txn_003",
+    "date": "2026-10-01T07:30:00Z",
+    "merchantName": "Greater Anglia",
+    "amount": 14.80,
+    "direction": "out",
+    "reference": "Train ticket"
+  },
+  {
+    "id": "txn_004",
+    "date": "2026-10-01T18:05:00Z",
+    "merchantName": "Netflix",
+    "amount": 10.99,
+    "direction": "out",
+    "reference": "Monthly subscription"
+  },
+  {
+    "id": "txn_005",
+    "date": "2026-10-02T12:15:00Z",
+    "merchantName": "Pret A Manger",
+    "amount": 7.65,
+    "direction": "out",
+    "reference": "Card payment"
+  },
+  {
+    "id": "txn_006",
+    "date": "2026-10-02T20:00:00Z",
+    "merchantName": "J Smith",
+    "amount": 25.00,
+    "direction": "in",
+    "reference": "Dinner split"
+  },
+  {
+    "id": "txn_007",
+    "date": "2026-10-03T09:45:00Z",
+    "merchantName": "British Gas",
+    "amount": 84.23,
+    "direction": "out",
+    "reference": "Energy bill"
+  },
+  {
+    "id": "txn_008",
+    "date": "2026-10-03T16:30:00Z",
+    "merchantName": "Boots",
+    "amount": 12.49,
+    "direction": "out",
+    "reference": "Card payment"
+  },
+  {
+    "id": "txn_009",
+    "date": "2026-10-04T11:00:00Z",
+    "merchantName": "Sainsbury's",
+    "amount": 56.78,
+    "direction": "out",
+    "reference": "Card payment"
+  },
+  {
+    "id": "txn_010",
+    "date": "2026-10-05T13:20:00Z",
+    "merchantName": "Thames Water",
+    "amount": 31.50,
+    "direction": "out",
+    "reference": "Water bill"
+  },
+  {
+    "id": "txn_011",
+    "date": "2026-10-05T19:40:00Z",
+    "merchantName": "Deliveroo",
+    "amount": 22.10,
+    "direction": "out",
+    "reference": "Card payment"
+  },
+  {
+    "id": "txn_012",
+    "date": "2026-10-06T10:05:00Z",
+    "merchantName": "A Patel",
+    "amount": 150.00,
+    "direction": "in",
+    "reference": "Rent contribution"
+  },
+  {
+    "id": "txn_013",
+    "date": "2026-10-06T21:15:00Z",
+    "merchantName": "Vue Cinemas",
+    "amount": 13.50,
+    "direction": "out",
+    "reference": "Card payment"
+  },
+  {
+    "id": "txn_014",
+    "date": "2026-10-07T08:50:00Z",
+    "merchantName": "TfL",
+    "amount": 8.10,
+    "direction": "out",
+    "reference": "Travel"
+  },
+  {
+    "id": "txn_015",
+    "date": "2026-10-07T17:25:00Z",
+    "merchantName": "Amazon",
+    "amount": 29.99,
+    "direction": "out",
+    "reference": "Card payment"
+  },
+  {
+    "id": "txn_016",
+    "date": "2026-10-08T12:40:00Z",
+    "merchantName": "Greggs",
+    "amount": 5.35,
+    "direction": "out",
+    "reference": "Card payment"
+  },
+  {
+    "id": "txn_017",
+    "date": "2026-10-08T22:00:00Z",
+    "merchantName": "Spotify",
+    "amount": 11.99,
+    "direction": "out",
+    "reference": "Monthly subscription"
+  },
+  {
+    "id": "txn_018",
+    "date": "2026-10-09T09:30:00Z",
+    "merchantName": "HMRC",
+    "amount": 120.00,
+    "direction": "in",
+    "reference": "Tax refund"
+  },
+  {
+    "id": "txn_019",
+    "date": "2026-10-09T18:50:00Z",
+    "merchantName": "Nando's",
+    "amount": 18.75,
+    "direction": "out",
+    "reference": "Card payment"
+  },
+  {
+    "id": "txn_020",
+    "date": "2026-10-10T15:10:00Z",
+    "merchantName": "Zara",
+    "amount": 45.00,
+    "direction": "out",
+    "reference": "Card payment"
+  },
+  {
+    "id": "txn_021",
+    "date": "2026-10-11T08:00:00Z",
+    "merchantName": "Costa Coffee",
+    "amount": 4.20,
+    "direction": "out",
+    "reference": "Card payment"
+  }
+]

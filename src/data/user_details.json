@@ -1,0 +1,12 @@
+{
+  "id": "user_001",
+  "name": "Hugh",
+  "bankName": "Gradiators Banking",
+  "account": {
+    "accountName": "Hugh Current Account",
+    "accountType": "Personal",
+    "sortCode": "12-34-56",
+    "accountNumber": "12345678",
+    "currency": "GBP"
+  }
+}

@@ -1,0 +1,491 @@
+:root {
+  --primary: #1f4e79;
+  --background: #f7f8fa;
+  --surface: #ffffff;
+  --border: #e2e5ea;
+  --text: #111827;
+  --text-secondary: #6b7280;
+  --success: #15803d;
+  --warning: #b45309;
+  --danger: #b91c1c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #5b9bd5;
+    --background: #0f1115;
+    --surface: #1a1d23;
+    --border: #2c313a;
+    --text: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --success: #4ade80;
+    --warning: #fbbf24;
+    --danger: #f87171;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: #000;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100svh;
+}
+
+#root {
+  width: 375px;
+  height: 812px;
+  max-width: 100%;
+  max-height: 100svh;
+  overflow: hidden;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+}
+
+button {
+  font-family: inherit;
+  transition: filter 100ms, background-color 100ms;
+}
+
+/* Pressed buttons go slightly darker. */
+button:active:not(:disabled) {
+  filter: brightness(0.88);
+}
+
+/* Transparent buttons (transaction rows) have nothing for brightness to darken, so tint them instead. */
+.txn-row:active {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+/* Page transitions: screens are stacked and swipe left (forward) or right (back). */
+.stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation-fill-mode: both;
+}
+
+.screen.enter-forward { animation-name: from-right; }
+.screen.exit-forward { animation-name: to-left; }
+.screen.enter-back { animation-name: from-left; }
+.screen.exit-back { animation-name: to-right; }
+
+@keyframes from-right { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes to-left { from { transform: translateX(0); } to { transform: translateX(-30%); } }
+@keyframes from-left { from { transform: translateX(-30%); } to { transform: translateX(0); } }
+@keyframes to-right { from { transform: translateX(0); } to { transform: translateX(100%); } }
+
+/* The incoming screen sits on top when moving forward, the outgoing one when moving back. */
+.screen.enter-forward,
+.screen.exit-back {
+  z-index: 1;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen {
+    animation-duration: 1ms;
+  }
+}
+
+main {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+main.home {
+  justify-content: center;
+}
+
+main.txns {
+  overflow-y: hidden;
+}
+
+main.pay {
+  position: relative;
+  justify-content: center;
+}
+
+.pay-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pay-home {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.balance-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.balance {
+  font-size: 32px;
+  font-variant-numeric: tabular-nums;
+  margin: 4px 0 0;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.icon-btn-square {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+h2 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.btn {
+  height: 48px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-destructive {
+  background: var(--danger);
+  color: #fff;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.field input,
+.field select {
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 16px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.field input[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+
+.field .error {
+  font-size: 13px;
+  color: var(--danger);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.txn-list {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.txn-row {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+  min-height: 44px;
+}
+
+.txn-row + .txn-row,
+.txn-row-group + .txn-row-group {
+  border-top: 1px solid var(--border);
+}
+
+.txn-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background);
+}
+
+.txn-/* Page transitions: screens are stacked and swipe left (forward) or right (back). */
+.stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  animation-fill-mode: both;
+}
+
+.screen.enter-forward { animation-name: from-right; }
+.screen.exit-forward { animation-name: to-left; }
+.screen.enter-back { animation-name: from-left; }
+.screen.exit-back { animation-name: to-right; }
+
+@keyframes from-right { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes to-left { from { transform: translateX(0); } to { transform: translateX(-30%); } }
+@keyframes from-left { from { transform: translateX(-30%); } to { transform: translateX(0); } }
+@keyframes to-right { from { transform: translateX(0); } to { transform: translateX(100%); } }
+
+/* The incoming screen sits on top when moving forward, the outgoing one when moving back. */
+.screen.enter-forward,
+.screen.exit-back {
+  z-index: 1;
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.15);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen {
+    animation-duration: 1ms;
+  }
+}
+
+main {
+  flex: 1;
+  min-width: 0;
+}
+
+.txn-name {
+  font-size: 16px;
+}
+
+.txn-date {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.txn-amount {
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.txn-amount.in {
+  color: var(--success);
+}
+
+.txn-amount.out {
+  color: var(--danger);
+}
+
+.txn-chevron {
+  flex-shrink: 0;
+  transition: transform 200ms;
+}
+
+.txn-row[aria-expanded='true'] .txn-chevron {
+  transform: rotate(180deg);
+}
+
+/* Expands downwards by animating the row track from 0 to the content height. */
+.txn-details-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 200ms ease;
+}
+
+.txn-details-wrap.open {
+  grid-template-rows: 1fr;
+}
+
+.txn-details-wrap > .txn-details {
+  overflow: hidden;
+  min-height: 0;
+  transition: padding-bottom 200ms ease;
+}
+
+.txn-details-wrap:not(.open) > .txn-details {
+  padding-bottom: 0;
+}
+
+.txn-details {
+  padding: 0 0 12px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.result-icon.success {
+  color: var(--success);
+}
+
+.result-icon.failure {
+  color: var(--danger);
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-top: 1px solid var(--border);
+  font-size: 16px;
+}
+
+.result-row span:first-child {
+  color: var(--text-secondary);
+}
+
+.traverse-panel {
+  position: fixed;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  color: var(--text);
+  z-index: 10;
+}
+
+.traverse-current {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.traverse-panel select {
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 16px;
+  background: var(--background);
+  color: var(--text);
+}
+
+.traverse-path {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 13px;
+}
+
+.traverse-path li.current {
+  font-weight: 600;
+  color: var(--primary);
+}
